@@ -1,6 +1,14 @@
 #!/bin/sh
-set -e
+# Container entrypoint. Forwards signals (via exec) to the Go binary
+# and transparently passes through all arguments.
 
-cd /app
+set -eu
 
-exec "$@"
+: "${APP_BIN:=/app/main}"
+
+if [ ! -x "$APP_BIN" ]; then
+    echo "entrypoint: APP_BIN '$APP_BIN' not found or not executable" >&2
+    exit 127
+fi
+
+exec "$APP_BIN" "$@"

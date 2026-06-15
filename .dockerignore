@@ -1,12 +1,13 @@
 .git/
 .gitignore
+.gitattributes
 .dockerignore
 Dockerfile
+README.md
+*.md
 *.log
 .env
+.env.*
 .DS_Store
 .idea/
 .vscode/
-
-# app
-app/go.sum

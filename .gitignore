@@ -3,5 +3,6 @@
 .vscode
 *.log
 
-# app
-app/go.sum
+# Go
+app/main
+app/main.exe
