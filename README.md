@@ -31,6 +31,15 @@
 docker build -t golang-app-build-image:dev .
 ```
 
+# 构建多平台镜像并推送到镜像仓库
+
+```bash
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t yongyuanfan/golang-app:1.25.1.beta1 \
+  --push .
+```
+
 构建参数：
 
 | 变量 | 默认值 | 说明 |
