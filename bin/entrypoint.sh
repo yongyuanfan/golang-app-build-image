@@ -11,4 +11,8 @@ if [ ! -x "$APP_BIN" ]; then
     exit 127
 fi
 
+if [ ! -f ".env" ] && [ -f ".env.example" ]; then
+    cp .env.example .env
+fi
+
 exec "$APP_BIN" "$@"
