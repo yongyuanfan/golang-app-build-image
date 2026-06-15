@@ -38,4 +38,5 @@ USER app
 EXPOSE 8000
 
 ENTRYPOINT ["/entrypoint.sh"]
+
 CMD ["/app/main"]
