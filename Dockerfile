@@ -3,20 +3,18 @@ ARG ALPINE_VERSION=3.22
 
 FROM golang:${GO_VERSION}-alpine${ALPINE_VERSION} AS builder
 
-ENV GOPROXY=https://goproxy.cn,direct \
-    GOSUMDB=sum.golang.org \
-    CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64
+ENV GOPROXY=https://goproxy.cn,direct
 
 WORKDIR /src
 
 # 1) 仅拷贝模块清单，单独一层缓存依赖下载
 COPY app/go.mod app/go.sum* ./
+
 RUN go mod download
 
 # 2) 再拷贝源码并编译
 COPY app/ ./
+
 RUN go build -trimpath -ldflags="-s -w" -o /out/main ./main.go
 
 FROM alpine:${ALPINE_VERSION} AS runtime
