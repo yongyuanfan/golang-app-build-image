@@ -15,4 +15,5 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
     cp .env.example .env
 fi
 
+echo "entrypoint: starting $APP_BIN $*" >&2
 exec "$APP_BIN" "$@"
